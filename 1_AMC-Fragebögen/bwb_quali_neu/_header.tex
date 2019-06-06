@@ -1,0 +1,56 @@
+%---------------------------------------------
+% Präambel
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[german]{babel}
+
+\renewcommand*\rmdefault{lmss}
+\usepackage{setspace}
+
+\usepackage{color, colortbl}
+\definecolor{grau}{rgb}{.9,.9,.9}
+
+\usepackage{bbding}
+\usepackage{dingbat}
+
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{fp}
+\usepackage{textpos}
+\usepackage{dashrule}
+\usepackage{tikz}
+\usepackage{paralist}
+
+
+% Für Fragebogen
+%---------------------------------------------
+% Bienvenue Stylepaket
+\usepackage[box,lang=DE,noshuffle]{automultiplechoice}
+% LMES Stylepaket
+\usepackage{zusatz}
+
+%---------------------------------------------
+% AMC anpassen
+
+\AMCtext{message}{\footnotesize \color{black} Bitte Kästchen eindeutig mit dunkler Farbe (kein Bleistift) ankreuzen. Zur Korrektur falsches Kästchen vollständig ausfüllen und gewolltes ankreuzen.}
+\AMCtext{draft}{}
+
+% Vertikaler Abstand zwischen den einzelnen Fragen
+\def\AMCbeginQuestion#1#2{\vspace{-0.4cm}}
+
+%Größe Antwortboxen
+%\AMCboxDimensions{size=1.7ex}
+
+\makeatletter
+\def\saveenum{\xdef\@savedenum{\the\c@enumi\relax}}
+\def\resetenum{\global\c@enumi\@savedenum}
+\makeatother
+
+
+\setlength\parindent{0pt}

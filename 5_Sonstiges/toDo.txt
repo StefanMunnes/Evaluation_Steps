@@ -1,0 +1,3 @@
+- Teamviewer
+- Cloud synchronisieren mit Steps-Laptop
+- Output für jeden Kurs???

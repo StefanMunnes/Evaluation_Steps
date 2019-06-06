@@ -1,0 +1,481 @@
+%---------------------------------------------
+% Präambel
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[german]{babel}
+
+\renewcommand*\rmdefault{lmss}
+\usepackage{setspace}
+
+\usepackage{color, colortbl}
+\definecolor{grau}{rgb}{.9,.9,.9}
+
+\usepackage{bbding}
+\usepackage{dingbat}
+
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{fp}
+\usepackage{textpos}
+\usepackage{dashrule}
+\usepackage{tikz}
+\usepackage{paralist}
+
+
+% Für Fragebogen
+%---------------------------------------------
+% Bienvenue Stylepaket
+\usepackage[box,lang=DE,noshuffle]{automultiplechoice}
+% LMES Stylepaket
+\usepackage{zusatz}
+
+%---------------------------------------------
+% AMC anpassen
+
+\AMCtext{message}{\footnotesize \color{black} Bitte Kästchen eindeutig mit dunkler Farbe (kein Bleistift) ankreuzen. Zur Korrektur falsches Kästchen vollständig ausfüllen und gewolltes ankreuzen.}
+\AMCtext{draft}{}
+
+% Vertikaler Abstand zwischen den einzelnen Fragen
+\def\AMCbeginQuestion#1#2{\vspace{-0.4cm}}
+
+%Größe Antwortboxen
+%\AMCboxDimensions{size=1.7ex}
+
+\makeatletter
+\def\saveenum{\xdef\@savedenum{\the\c@enumi\relax}}
+\def\resetenum{\global\c@enumi\@savedenum}
+\makeatother
+
+
+\setlength\parindent{0pt}
+
+
+\begin{document}
+\onecopy{191}{
+
+\includegraphics[width=0.25\textwidth]{../bbst_gs_deutsch/_pics/steps} \hspace{5cm}
+\includegraphics[width=0.4\textwidth]{../bbst_gs_deutsch/_pics/beberlin}
+
+\begin{center}
+	\huge \textbf{Evaluation} \\
+	Berufsbegleitende Studien
+\end{center}
+
+\vspace{1cm}
+
+Sehr geehrte Teilnehmende,
+\\ \\
+in der berufsbegleitenden Weiterbildung arbeiten wir regelmäßig an der Qualität unseres Angebotes und möchten Ihre Ideen und Anregungen zur Verbesserung der Qualität aufnehmen. Ihre Bewertung der Maßnahmen ist uns daher sehr wichtig.
+\\ \\
+Bitte füllen Sie diesen Fragebogen aus und geben ihn im Anschluss bei Ihrer Dozentin/Ihrem Dozenten ab.
+\\ \\
+Markieren Sie die gewünschte Antwort mit einem Kreuz im vorgegebenen Kästchen: \includegraphics[scale=0.3]{../bbst_gs_deutsch/_pics/kaestchen_kreuz} \\
+Bei einem Fehler füllen Sie das falsch markierte Kästchen bitte vollständig aus: \includegraphics[scale=0.3]{../bbst_gs_deutsch/_pics/kaestchen_voll}
+\\ \\
+Die Auswertung erfolgt selbstverständlich anonym.
+\\ \\
+Vielen Dank.
+
+\vspace{1cm}
+
+
+\subsection*{Bitte wählen Sie:}
+
+\vspace{0.5cm}
+
+\begin{questionmult}{kurs}\scoring{v=-1}
+	\begin{choices}
+		\correctchoice{Berufsbegleitende Studien Deutsch Grundschule A}\scoring{b=1}
+		\correctchoice{Berufsbegleitende Studien Deutsch Grundschule B}\scoring{b=2}
+		\correctchoice{Berufsbegleitende Studien Deutsch Grundschule C}\scoring{b=3}
+		\correctchoice{Berufsbegleitende Studien Deutsch Grundschule D}\scoring{b=4}
+		\correctchoice{Berufsbegleitende Studien Deutsch Grundschule E}\scoring{b=5}
+		\correctchoice{Berufsbegleitende Studien Deutsch Grundschule F}\scoring{b=6}
+		\correctchoice{Berufsbegleitende Studien Deutsch Grundschule G}\scoring{b=7}
+		\correctchoice{Berufsbegleitende Studien Deutsch Grundschule H}\scoring{b=8}
+		\correctchoice{Berufsbegleitende Studien Deutsch Grundschule I}\scoring{b=9}
+	\end{choices}
+\end{questionmult}
+
+
+\pagebreak
+
+
+\section*{Angaben zur Person}
+
+\subsection*{1. Geschlecht}
+\vspace{0.5cm}
+\begin{questionmult}{geschl}\scoring{v=-1}
+	\begin{choiceshoriz}
+		\correctchoice{männlich}\scoring{b=1}
+		\correctchoice{weiblich}\scoring{b=2}
+	\end{choiceshoriz}
+\end{questionmult}
+
+\subsection*{2. Alter}
+\vspace{0.5cm}
+\begin{questionmult}{alter}\scoring{v=-1}
+	\begin{choices}
+		\correctchoice{30 Jahre und jünger}\scoring{b=1}
+		\correctchoice{31 bis 40 Jahre}\scoring{b=2}
+		\correctchoice{41 bis 50 Jahre}\scoring{b=3}
+		\correctchoice{51 bis 60 Jahre}\scoring{b=4}
+		\correctchoice{61 Jahre und älter}\scoring{b=5}
+	\end{choices}
+\end{questionmult}
+
+
+\section*{Werdegang}
+
+\subsection*{3. Welche Fachrichtung haben Sie studiert?}
+\vspace{0.5cm}
+\begin{questionmult}{fach}\scoring{v=-1}
+	\begin{choices}
+		\correctchoice{Naturwissenschaft}\scoring{b=1}
+		\correctchoice{Geisteswissenschaft}\scoring{b=2}
+		\correctchoice{Ingenieurwesen}\scoring{b=3}
+		\correctchoice{Sprache}\scoring{b=4}
+		\correctchoice{Musik}\scoring{b=5}
+		\correctchoice{Sport}\scoring{b=6}
+		\correctchoice{andere}\scoring{b=7}
+	\end{choices}
+\end{questionmult}
+
+\subsection*{4. Wie viele Jahre Berufserfahrung haben Sie in der studierten Fachrichtung?}
+\vspace{0.5cm}
+\begin{questionmult}{erfahr}\scoring{v=-1}
+	\begin{choices}
+		\correctchoice{keine}\scoring{b=1}
+		\correctchoice{1 bis 5 Jahre}\scoring{b=2}
+		\correctchoice{6 bis 10 Jahre}\scoring{b=3}
+		\correctchoice{11 bis 15 Jahre}\scoring{b=4}
+		\correctchoice{mehr als 15 Jahre}\scoring{b=5}
+	\end{choices}
+\end{questionmult}
+
+\subsection*{5. Sind Sie bereits vor Ihrem Quereinstieg in Ausbildungsbereichen tätig gewesen (z.B. als Trainer/in, im Bereich Nachhilfe, als Chorleitung etc.)?}
+\vspace{0.5cm}
+\begin{questionmult}{querein}\scoring{v=-1}
+	\begin{choiceshoriz}
+		\correctchoice{ja}\scoring{b=1}
+		\correctchoice{nein}\scoring{b=2}
+	\end{choiceshoriz}
+\end{questionmult}
+
+\subsection*{6. Wie wurden Sie auf diese Ausbildungsmöglichkeit aufmerksam?}
+\vspace{0.5cm}
+\begin{questionmult}{aufmerk_ausb}\scoring{v=-1}
+	\begin{choices}
+		\correctchoice{Eigenrecherche}\scoring{b=1}
+		\correctchoice{Familie/Freunde/Bekannte}\scoring{b=2}
+		\correctchoice{Fernsehen}\scoring{b=3}
+		\correctchoice{Gewerkschaft}\scoring{b=4}
+		\correctchoice{Internet/Intranet}\scoring{b=5}
+		\correctchoice{Kollegium}\scoring{b=6}
+		\correctchoice{Schulleitung}\scoring{b=7}
+		\correctchoice{Zeitung}\scoring{b=8}
+		\correctchoice{andere}\scoring{b=9}
+	\end{choices}
+\end{questionmult}
+
+
+\section*{Rahmenbedingungen}
+
+\subsection*{7. An welchem Schultyp sind Sie eingesetzt?}
+\vspace{0.5cm}
+\begin{questionmult}{schultyp}\scoring{v=-1}
+	\begin{choices}
+		\correctchoice{Grundschule}\scoring{b=1}
+		\correctchoice{Integrierte Sekundarschule}\scoring{b=2}
+		\correctchoice{Gymnasium}\scoring{b=3}
+		\correctchoice{berufliche Schule}\scoring{b=4}
+		\correctchoice{Schule mit sonderpädagogischem Förderschwerpunkt}\scoring{b=5}
+		\correctchoice{Gemeinschaftsschule}\scoring{b=6}
+	\end{choices}
+\end{questionmult}
+
+\subsection*{8. In welchen Klassenstufen sind Sie überwiegend eingesetzt? \\
+	(Mehrfachantworten möglich)}
+\vspace{0.5cm}
+\begin{questionmult}{klassen}\scoring{v=-1}
+	\begin{choices}
+		\correctchoice{Klassenstufe 1 bis 3}\scoring{b=1}
+		\correctchoice{Klassenstufe 4 bis 6}\scoring{b=2}
+		\correctchoice{Klassenstufe 7 bis 10}\scoring{b=3}
+		\correctchoice{Klassenstufe 11 bis 12/13}\scoring{b=4}
+	\end{choices}
+\end{questionmult}
+
+\subsection*{9. Wie viele Stunden eigenständigen Unterricht erteilen Sie pro Woche?}
+\vspace{0.5cm}
+\begin{questionmult}{stunden}\scoring{v=-1}
+	\begin{choices}
+		\correctchoice{weniger als 5 Stunden}\scoring{b=1}
+		\correctchoice{5 bis 10 Stunden}\scoring{b=2}
+		\correctchoice{11 bis 15 Stunden}\scoring{b=3}
+		\correctchoice{16 bis 19 Stunden}\scoring{b=4}
+		\correctchoice{mehr als 19 Stunden}\scoring{b=5}
+	\end{choices}
+\end{questionmult}
+
+\subsection*{10. Wie viele Stunden davon unterrichten Sie Ihr anerkanntes Fach?}
+\vspace{0.5cm}
+\begin{questionmult}{stunden_fach}\scoring{v=-1}
+	\begin{choices}
+		\correctchoice{weniger als 25\% meines Unterrichts}\scoring{b=1}
+		\correctchoice{25\% bis 50\% meines Unterrichts}\scoring{b=2}
+		\correctchoice{50\% bis 75\% meines Unterrichts}\scoring{b=3}
+		\correctchoice{mehr als 75\% meines Unterrichts}\scoring{b=4}
+	\end{choices}
+\end{questionmult}
+
+\subsection*{11. Wie viele Stunden unterrichten Sie bereits in dem Fach, welches Sie gerade in den berufsbegleitenden Studien belegen?}
+\vspace{0.5cm}
+\begin{questionmult}{stunden_stud}\scoring{v=-1}
+	\begin{choices}
+		\correctchoice{weniger als 2 Stunden pro Woche}\scoring{b=1}
+		\correctchoice{3 bis 4 Stunden pro Woche}\scoring{b=2}
+		\correctchoice{5 bis 6 Stunden pro Woche}\scoring{b=3}
+		\correctchoice{mehr}\scoring{b=4}
+	\end{choices}
+\end{questionmult}
+
+
+\subsection*{12. Welcher zusätzliche Einsatz wird von Ihnen seitens der Schule erwartet? \\ (Mehrfachantworten möglich)}
+\vspace{0.5cm}
+\begin{questionmult}{einsatz}\scoring{v=-1}
+	\begin{choices}
+		\correctchoice{Übernahme von Klassenleitungen}\scoring{b=1}
+		\correctchoice{Elternsprechabende}\scoring{b=2}
+		\correctchoice{Gremienarbeit}\scoring{b=3}
+		\correctchoice{(Fach-) Konferenzen/Dienstberatungen}\scoring{b=4}
+		\correctchoice{Arbeiten am SchiC}\scoring{b=5}
+		\correctchoice{Fortbildungen}\scoring{b=6}
+		\correctchoice{verantwortlich für Brandschutz}\scoring{b=7}
+		\correctchoice{verantwortlich für IT}\scoring{b=8}
+		\correctchoice{Planung/Durchführung/Begleitung von Klassenfahrten/Ausflügen/Wandertagen}\scoring{b=9}
+		\correctchoice{Planung/Durchführung/Begleitung von Feierlichkeiten/Veranstaltungen}\scoring{b=10}
+		\correctchoice{Planung/Durchführung/Begleitung von Projekttagen}\scoring{b=11}
+		\correctchoice{andere außerschulische Aktivitäten}\scoring{b=12}
+		\correctchoice{sonderpädagogische Aufgaben (Diagnostik, Beratung, Hospitation, Feststellungsverfahren)}\scoring{b=13}
+		\correctchoice{weiteres}\scoring{b=15}
+	\end{choices}
+\end{questionmult}
+
+\subsection*{13. Fühlen Sie sich seitens der Schulleitung ausreichend unterstützt?}
+\vspace{0.5cm}
+\begin{questionmult}{leitung}\scoring{v=-1}
+	\begin{choiceshoriz}
+		\correctchoice{ja}\scoring{b=1}
+		\correctchoice{nein}\scoring{b=2}
+	\end{choiceshoriz}
+\end{questionmult}
+
+\subsection*{14. Wie hoch ist Ihre gefühlte Belastung durch die berufsbegleitenden Studien und Schule?}
+\vspace{0.1cm}
+\hspace{1cm} völlig in Ordnung \hspace{7cm} maximale Belastung \\ \\
+\begin{questionmult}{belast}\scoring{v=-1}
+	\begin{choiceshoriz}
+		\correctchoice{}\scoring{b=1}
+		\correctchoice{}\scoring{b=2}
+		\correctchoice{}\scoring{b=3}
+		\correctchoice{}\scoring{b=4}
+		\correctchoice{}\scoring{b=5}
+		\correctchoice{}\scoring{b=6}
+	\end{choiceshoriz}
+\end{questionmult}
+
+\subsection*{15. Wie gelingt Ihnen die Vereinbarkeit von berufsbegleitenden Studien und Familie?}
+\vspace{0.1cm}
+
+\vspace{-.3cm}
+\tikzmark{f10a}
+
+\hspace{1.2cm} sehr gut \hspace{7.1cm} ungenügend \hspace{.3cm} nicht zutreffend\\ \\
+\begin{questionmult}{verein}\scoring{v=-1}
+	\begin{choiceshoriz}
+		\correctchoice{}\scoring{b=1}
+		\correctchoice{}\scoring{b=2}
+		\correctchoice{}\scoring{b=3}
+		\correctchoice{}\scoring{b=4}
+		\correctchoice{}\scoring{b=5}
+		\correctchoice{}\scoring{b=6}
+		\correctchoice{}\scoring{b=0}
+	\end{choiceshoriz}
+\end{questionmult}
+
+\vspace{-.5cm}
+
+\tikzmark{f10b}
+\gestrichelt{11.9}{11.9}{f10a}{f10b}
+
+
+\section*{Ausbildung}
+
+\subsection*{16. Wie empfanden Sie die Qualität der Beratung im Vorfeld der Ausbildung?}
+\vspace{0.1cm}
+\hspace{2cm} sehr gut \hspace{7.5cm} ungenügend \\ \\
+\begin{questionmult}{quali}\scoring{v=-1}
+	\begin{choiceshoriz}
+		\correctchoice{}\scoring{b=1}
+		\correctchoice{}\scoring{b=2}
+		\correctchoice{}\scoring{b=3}
+		\correctchoice{}\scoring{b=4}
+		\correctchoice{}\scoring{b=5}
+		\correctchoice{}\scoring{b=6}
+	\end{choiceshoriz}
+\end{questionmult}
+
+\subsection*{17. Welche Aspekte der Beratung fehlten Ihrer Meinung nach? \\
+\small Für weitere Ausführungen können Sie gerne den Bogen ``Offene Fragen'' nutzen.}
+\vspace{0.5cm}
+\begin{questionmult}{fehlt}\scoring{v=-1}
+	\begin{choices}
+		\correctchoice{Es gab keine Beratung.}\scoring{b=1}
+		\correctchoice{konkrete Angaben zum Verlauf der Ausbildung}\scoring{b=2}
+		\correctchoice{Erklärungen zur Fächerauswahl}\scoring{b=3}
+		\correctchoice{Rechte/Pflichten der Quereinsteigenden}\scoring{b=4}
+		\correctchoice{konkrete Ansprechpartner/innen}\scoring{b=5}
+		\correctchoice{andere Aspekte}\scoring{b=6}
+	\end{choices}
+\end{questionmult}
+
+
+
+\subsection*{18. Fragen zu den berufsbegleitenden Studien Deutsch für die Grundschule}
+
+\tikzmark{f4a} % Auskommentieren, falls keine Trennlinie
+
+\headerfive{6.7cm}{\small trifft voll zu}{\small trifft überwiegend zu}{\small trifft weniger zu}{\small trifft gar nicht zu}{keine Angabe} \\
+
+\begin{enumerate}
+
+\itemsfive{fragen_a}{6cm}{\item Das Gesamtkonzept für die bbSt Deutsch mit der Aufteilung in die Bereiche Fachdidaktik, Literaturwissenschaft und Linguistik ist zielführend.}{1}{2}{3}{4}{-1} \\
+\itemsfive{fragen_b}{6cm}{\item Die Inhalte in den Bereichen Fachdidaktik, Literaturwissenschaft und Linguistik sind aufeinander abgestimmt.}{1}{2}{3}{4}{-1} \\
+\itemsfive{fragen_c}{6cm}{\item Meine persönlichen Erwartungen an die Ausbildung werden/wurden erfüllt.}{1}{2}{3}{4}{-1} \\
+
+\end{enumerate} \saveenum
+
+\vspace{-1cm}
+\tikzmark{f4b}
+
+\gestrichelt{13.7}{13.7}{f4a}{f4b}
+
+\pagebreak
+
+\subsection*{19. Fragen zur Struktur und Ablauf in der Fachdidaktik}
+
+\tikzmark{f4a} % Auskommentieren, falls keine Trennlinie
+
+\headerfive{6.7cm}{\small trifft voll zu}{\small trifft überwiegend zu}{\small trifft weniger zu}{\small trifft gar nicht zu}{keine Angabe} \\
+
+\begin{enumerate}
+
+\itemsfive{fd_1}{6cm}{\item Die Planung der Lehrveranstaltungen ist klar und übersichtlich.}{1}{2}{3}{4}{-1} \\
+\itemsfive{fd_2}{6cm}{\item Der Ablauf der Lehrveranstaltungen entspricht der Ankündigung.}{1}{2}{3}{4}{-1} \\
+\itemsfive{fd_3}{6cm}{\item Die Gestaltung der Lehrveranstaltungen ist abwechslungsreich.}{1}{2}{3}{4}{-1} \\
+\itemsfive{fd_4}{6cm}{\item Die/der Dozierende sorgt dafür, dass alle Teilnehmenden aktiv teilnehmen können.}{1}{2}{3}{4}{-1} \\
+\itemsfive{fd_5}{6cm}{\item Die/der Dozierende sorgt für Transparenz in Bezug auf Leistungsanforderungen und -bewertung.}{1}{2}{3}{4}{-1} \\
+\itemsfive{fd_6}{6cm}{\item Fragen, Erfahrungen und Anregungen der Teilnehmenden werden in den Veranstaltungen aufgegriffen.}{1}{2}{3}{4}{-1} \\
+\itemsfive{fd_7}{6cm}{\item Es gibt ausreichend Übungsmöglichkei\-ten.}{1}{2}{3}{4}{-1} \\
+\itemsfive{fd_8}{6cm}{\item Die Lehrveranstaltungen beginnen und enden pünktlich.}{1}{2}{3}{4}{-1} \\
+\itemsfive{fd_9}{6cm}{\item Die Teilnehmenden erscheinen pünktlich.}{1}{2}{3}{4}{-1} \\
+\textbf{Materialien} \\ \\
+\itemsfive{fd_10}{6cm}{\item Das Ausbildungsmaterial ist aktuell und informativ.}{1}{2}{3}{4}{-1} \\
+\itemsfive{fd_11}{6cm}{\item Über Literatur und zusätzliche Materialien wird informiert.}{1}{2}{3}{4}{-1} \\
+\textbf{Kompetenzerweiterung} \\ \\
+\itemsfive{fd_12}{6cm}{\item Das vermittelte und erworbene Fachwissen ist als Grundlagenwissen relevant.}{1}{2}{3}{4}{-1} \\
+\itemsfive{fd_13}{6cm}{\item Das Fachwissen stellt eine Unterstützung bei der Unterrichtsvorbereitung dar.}{1}{2}{3}{4}{-1}
+
+\end{enumerate} \saveenum
+
+\vspace{-1cm}
+\tikzmark{f4b}
+
+\gestrichelt{13.7}{13.7}{f4a}{f4b} % manuell positionieren
+
+\pagebreak
+
+
+\subsection*{20. Fragen zur Struktur und Ablauf in der Literaturwissenschaft}
+
+\tikzmark{f4a} % Auskommentieren, falls keine Trennlinie
+
+\headerfive{6.7cm}{\small trifft voll zu}{\small trifft überwiegend zu}{\small trifft weniger zu}{\small trifft gar nicht zu}{keine Angabe} \\
+
+\begin{enumerate}
+
+\itemsfive{lw_1}{6cm}{\item Die Planung der Lehrveranstaltungen ist klar und übersichtlich.}{1}{2}{3}{4}{-1} \\
+\itemsfive{lw_2}{6cm}{\item Der Ablauf der Lehrveranstaltungen entspricht der Ankündigung.}{1}{2}{3}{4}{-1} \\
+\itemsfive{lw_3}{6cm}{\item Die Gestaltung der Lehrveranstaltungen ist abwechslungsreich.}{1}{2}{3}{4}{-1} \\
+\itemsfive{lw_4}{6cm}{\item Die/der Dozierende sorgt dafür, dass alle Teilnehmenden aktiv teilnehmen können.}{1}{2}{3}{4}{-1} \\
+\itemsfive{lw_5}{6cm}{\item Die/der Dozierende sorgt für Transparenz in Bezug auf Leistungsanforderungen und -bewertung.}{1}{2}{3}{4}{-1} \\
+\itemsfive{lw_6}{6cm}{\item Fragen, Erfahrungen und Anregungen der Teilnehmenden werden in den Veranstaltungen aufgegriffen.}{1}{2}{3}{4}{-1} \\
+\itemsfive{lw_7}{6cm}{\item Es gibt ausreichend Übungsmöglichkeiten.}{1}{2}{3}{4}{-1} \\
+\itemsfive{lw_8}{6cm}{\item Die Lehrveranstaltungen beginnen und enden pünktlich.}{1}{2}{3}{4}{-1} \\
+\itemsfive{lw_9}{6cm}{\item Die Teilnehmenden erscheinen pünktlich.}{1}{2}{3}{4}{-1} \\
+\textbf{Materialien} \\ \\
+\itemsfive{lw_10}{6cm}{\item Das Ausbildungsmaterial ist aktuell und informativ.}{1}{2}{3}{4}{-1} \\
+\itemsfive{lw_11}{6cm}{\item Über Literatur und zusätzliche Materialien wird informiert.}{1}{2}{3}{4}{-1} \\
+\textbf{Kompetenzerweiterung} \\ \\
+\itemsfive{lw_12}{6cm}{\item Das vermittelte und erworbene Fachwissen ist als Grundlagenwissen relevant.}{1}{2}{3}{4}{-1} \\
+\itemsfive{lw_13}{6cm}{\item Das Fachwissen stellt eine Unterstützung bei der Unterrichtsvorbereitung dar.}{1}{2}{3}{4}{-1}
+
+\end{enumerate} \saveenum
+
+\vspace{-1cm}
+\tikzmark{f4b}
+
+\gestrichelt{13.7}{13.7}{f4a}{f4b}
+
+
+\pagebreak
+
+
+\subsection*{21. Fragen zur Struktur und Ablauf in der  Linguistik}
+\tikzmark{a} % Auskommentieren, falls keine Trennlinie
+
+\headerfive{6.7cm}{\small trifft voll zu}{\small trifft überwiegend zu}{\small trifft weniger zu}{\small trifft gar nicht zu}{keine Angabe} \\
+
+\begin{enumerate}
+
+\itemsfive{lk_1}{6cm}{\item Die Planung der Lehrveranstaltungen ist klar und übersichtlich.}{1}{2}{3}{4}{-1} \\
+\itemsfive{lk_2}{6cm}{\item Der Ablauf der Lehrveranstaltungen entspricht der Ankündigung.}{1}{2}{3}{4}{-1} \\
+\itemsfive{lk_3}{6cm}{\item Die Gestaltung der Lehrveranstaltungen ist abwechslungsreich.}{1}{2}{3}{4}{-1} \\
+\itemsfive{lk_4}{6cm}{\item Die/der Dozierende sorgt dafür, dass alle Teilnehmenden aktiv teilnehmen können.}{1}{2}{3}{4}{-1} \\
+\itemsfive{lk_5}{6cm}{\item Die/der Dozierende sorgt für Transparenz in Bezug auf Leistungsanforderungen und -bewertung.}{1}{2}{3}{4}{-1} \\
+\itemsfive{lk_6}{6cm}{\item Fragen, Erfahrungen und Anregungen der Teilnehmenden werden in den Veranstaltungen aufgegriffen.}{1}{2}{3}{4}{-1} \\
+\itemsfive{lk_7}{6cm}{\item Es gibt ausreichend Übungsmöglichkeiten.}{1}{2}{3}{4}{-1} \\
+\itemsfive{lk_8}{6cm}{\item Die Lehrveranstaltungen beginnen und enden pünktlich.}{1}{2}{3}{4}{-1} \\
+\itemsfive{lk_9}{6cm}{\item Die Teilnehmenden erscheinen pünktlich.}{1}{2}{3}{4}{-1} \\
+\textbf{Materialien} \\ \\
+\itemsfive{lk_10}{6cm}{\item Das Ausbildungsmaterial ist aktuell und informativ.}{1}{2}{3}{4}{-1} \\
+\itemsfive{lk_11}{6cm}{\item Über Literatur und zusätzliche Materialien wird informiert.}{1}{2}{3}{4}{-1} \\
+\textbf{Kompetenzerweiterung} \\ \\
+\itemsfive{lk_12}{6cm}{\item Das vermittelte und erworbene Fachwissen ist als Grundlagenwissen relevant.}{1}{2}{3}{4}{-1} \\
+\itemsfive{lk_13}{6cm}{\item Das Fachwissen stellt eine Unterstützung bei der Unterrichtsvorbereitung dar.}{1}{2}{3}{4}{-1}
+
+\end{enumerate} \saveenum
+
+\vspace{-1cm}
+\tikzmark{b}
+
+\gestrichelt{13.7}{13.7}{a}{b}
+
+
+
+\bigskip
+
+\begin{flushleft}
+\textbf{Vielen Dank, dass Sie sich die Zeit genommen haben. Sie haben uns mit Ihren Auskünften sehr geholfen. Viel Erfolg und Freude bei Ihrer weiteren beruflichen Tätigkeit!}
+\end{flushleft}
+
+
+}
+\end{document}
