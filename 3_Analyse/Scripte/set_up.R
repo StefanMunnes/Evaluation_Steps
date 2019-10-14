@@ -59,7 +59,7 @@ pdfs <- str_replace(list.files("4_Ergebnisse/Grafiken/set_up/",
                                recursive = T), 
                     ".pdf", "")
 
-to.use <- unique(c(csvs, pdfs)) # setdiff(csvs, pdfs)
+to.use <- setdiff(csvs, pdfs)
 
 
 
@@ -85,83 +85,11 @@ final <- lapply(raw.2, function(x)
 
 
 
-# Variante 1
+# Bericht als PDF mit 2 Grafiken und Durchschnittsnote
 
 for (i in names(final)) {
-
+  
   file <- paste0("4_Ergebnisse/Grafiken/set_up/", i, ".pdf")
-  
-  su_id <- unlist(strsplit(names(final[i]), "/"))[1]
-  datetime <- unlist(strsplit(names(final[i]), "/"))[2]
-  
-  date <- format.Date(as.Date(datetime, format = "%Y%m%d"), format = "%d.%m.%Y")
-  time <- sub("([[:digit:]]{2,2})$", ":\\1", str_sub(datetime, -4, -1))
-  
-  teilnehmende <- nrow(final[[i]])/11
-  
-  schnitt <- round(mean(final[[i]][["note"]], na.rm = T), digits = 1)
-    
-  
-  if (!dir.exists(paste0("4_Ergebnisse/Grafiken/set_up/", su_id))) {
-    dir.create(paste0("4_Ergebnisse/Grafiken/set_up/", su_id))
-  }
-  
-  plot(0:10, type = "n", xaxt = "n", yaxt = "n", bty = "n", xlab = "", ylab = "")
-  
-  text(5.5, 10, "Feedback", cex = 3.5)
-  text(5.5, 9, "zum SET UP 2019", cex = 2.5)
-  text(5.5, 7, su_id, cex = 1.5)
-  text(5.5, 6, paste0(date, "  -  ", time), cex = 1)
-  text(5.5, 5, paste0("Teilnehmende: ", teilnehmende), cex = 1)
-  
-  text(5.5, 3, paste0("Durchschnittliche Bewertung: ", schnitt), cex = 1.5)
-  
-  rasterImage(beberlin, 1, 0, 4.5, 1)
-  rasterImage(steps, 7.5, 0 , 10, 1)  
-  
-  plot.title <- recordPlot()
- 
-  dev.off()
-  
-  plot.graph <- final[[i]] %>% filter(between(note, 1, 6)) %>% 
-    ggplot(aes(y = note, x = reorder(frage, desc(frage)))) +
-    coord_flip() +
-    geom_jitter(width = .15, height = 0.08, cex = 2.3, color = alpha("mediumpurple3", 0.4)) +
-    stat_summary(fun.y = mean, geom = "crossbar", 
-                 aes(ymax = ..y.., 
-                     ymin = ..y..), 
-                 # color = "gray40", 
-                 color = "indianred2",
-                 width = 0.5) +
-    scale_y_continuous(name = "", 
-                       limits = c(1, 6), 
-                       breaks = c(1, 2, 3, 4, 5, 6)) +
-    labs(x = "") +
-    theme_light() +
-    theme(axis.text = element_text(size = 13),
-          strip.text.x = element_text(face = "bold", size = 17, colour = "black"),
-          strip.background = element_rect(fill = "white", colour = "white", size = 10),
-          panel.spacing = unit(2, "lines")) +
-    ggforce::facet_col(vars(part), scales = "free_y", space = "free")
-  
-  
-  pdf(file, width = 11.7, height = 8.3)
-  
-  print(plot.title)
-  
-  grid.arrange(plot.graph, bottom = teilnehmende, vp = viewport(width=0.9, height=0.9))    
-  
-  dev.off()
-  
-}
-
-
-
-# Variante 2
-
-for (i in names(final)) {
-  
-  file <- paste0("4_Ergebnisse/Grafiken/set_up/", i, "_2.pdf")
   
   su_id <- unlist(strsplit(names(final[i]), "/"))[1]
   datetime <- unlist(strsplit(names(final[i]), "/"))[2]
@@ -181,16 +109,16 @@ for (i in names(final)) {
   
   plot(0:10, asp = 0.6, type = "n", xaxt = "n", yaxt = "n", bty = "n", xlab = "", ylab = "")
   
-  text(5.5, 10, "Feedback", cex = 2.2)
-  text(5.5, 9, "zum SET UP 2019", cex = 1.5)
-  text(5.5, 7, su_id, cex = 1.2)
-  text(5.5, 6, paste0(date, "  -  ", time), cex = 1)
-  text(5.5, 5, paste0("Teilnehmende: ", teilnehmende), cex = 1)
+  text(5.5, 7, "Feedback", cex = 2.2)
+  text(5.5, 6, "zum SET UP 2019", cex = 1.5)
+  text(5.5, 5, su_id, cex = 1.2)
+  text(5.5, 3, paste0(date, "  -  ", time), cex = 1)
+  text(5.5, 2, paste0("Teilnehmende: ", teilnehmende), cex = 1)
   
-  text(5.5, 3, paste0("Durchschnittliche Bewertung: ", schnitt), cex = 1.2)
+  text(5.5, 0, paste0("Durchschnittliche Bewertung: ", schnitt), cex = 1.2)
   
-  rasterImage(beberlin, 1, 0, 4.5, 1)
-  rasterImage(steps, 7.5, 0 , 10, 1)  
+  rasterImage(beberlin, 0, 9, 3.5, 10)
+  rasterImage(steps, 7.5, 9 , 10, 10)  
   
   plot.title <- recordPlot()
   
