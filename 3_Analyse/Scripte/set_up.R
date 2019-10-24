@@ -68,9 +68,10 @@ raw <- sapply(to.use, function(x) read.csv2(paste0("3_Analyse/Scans/set_up/", x,
               simplify = F,
               USE.NAMES = T)
 
-raw.2 <- lapply(raw, function(x) x %>% select(starts_with("TICKED.")) %>%
-                                   rename_at(vars(starts_with("TICKED.")),
-                                             funs(str_replace(., "TICKED.", ""))))
+raw.2 <- lapply(raw, function(x) x %>%
+  filter(Note != "-1") %>%
+  select(starts_with("TICKED.")) %>%
+  rename_at(vars(starts_with("TICKED.")), funs(str_replace(., "TICKED.", ""))))
 
 names(raw.2) <- to.use
 
@@ -105,18 +106,21 @@ for (i in names(final)) {
     dir.create(paste0("4_Ergebnisse/Grafiken/set_up/", su_id))
   }
 
+  
+  par(oma = c(1, 1, 0, 1))
+  par(mar = c(1, 1, 0, 1))
 
   plot(0:10, asp = 0.6, type = "n", xaxt = "n", yaxt = "n", bty = "n", xlab = "", ylab = "")
 
   text(5.5, 7, "Feedback", cex = 2.2)
-  text(5.5, 6, "zum SET UP 2019", cex = 1.5)
+  text(5.5, 6, "zum SET UP", cex = 1.5)
   text(5.5, 5, su_id, cex = 1.2)
   text(5.5, 3, paste0(date, "  -  ", time), cex = 1)
   text(5.5, 2, paste0("Teilnehmende: ", teilnehmende), cex = 1)
 
   text(5.5, 0, paste0("Durchschnittliche Bewertung: ", schnitt), cex = 1.2)
 
-  rasterImage(beberlin, 0, 9, 3.5, 10)
+  rasterImage(beberlin, 1, 9, 4.5, 10)
   rasterImage(steps, 7.5, 9 , 10, 10)
 
   plot.title <- recordPlot()
