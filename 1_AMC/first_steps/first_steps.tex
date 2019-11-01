@@ -55,7 +55,7 @@
 
 \begin{document}
 
-\onecopy{0}{
+\onecopy{1}{
 
 \vspace{-0.5cm}
 
@@ -68,10 +68,6 @@
 	\textbf{\huge \scshape Evaluation} \\ \vspace{0.3cm}
 	\textbf{\Large \scshape FIRST STEPS-Paten im QuerBer}
 \end{center}
-
-\vspace{1.5cm}
-
-Mein Pate/meine Patin: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ (freiwillige Angabe)
 
 \vspace{1.5cm}
 
@@ -90,7 +86,8 @@ Ich habe bereits vor dem KICK OFF an einer Schule gearbeitet. &
 
 \vspace{1cm}
 
-\subsection*{Fragen zum Paten/zur Patin}
+
+\subsection*{Fragen zum Patensystem}
 
 \vspace{-1.3cm}
 
@@ -98,6 +95,7 @@ Ich habe bereits vor dem KICK OFF an einer Schule gearbeitet. &
 	& Trifft voll und & & Trifft überhaupt \\
 	& ganz zu 				& & nicht zu
 \end{tabular}
+
 
 \vspace{-.1cm}
 
@@ -107,20 +105,79 @@ Ich habe bereits vor dem KICK OFF an einer Schule gearbeitet. &
 
 \begin{enumerate}
 
-	\itemsseven{v1}{\item Mein Pate/meine Patin ist auf meine \newline Fragen und Wünsche eingegangen.} \\
-	\itemsseven{v2}{\item Die Gespräche mit meinem Paten/meiner Patin fanden auf Augenhöhe statt.} \\
-	\itemsseven{v3}{\item Die Gespräche mit meinem Paten/meiner Patin fanden in einer ruhigen und vertraulichen Atmosphäre statt.} \\
-	\itemsseven{v4}{\item Mein Pate/meine Patin gab mir hilfreiches und konstruktives Feedback.} \\
-	\itemsseven{v5}{\item Die Gespräche mit meinem Paten/meiner Patin haben mich gestärkt.} \\
-	\itemsseven{v6}{\item Mein Pate/meine Patin hat NICHT aktiv in den Unterricht eingegriffen.} \\
-	\itemsseven{v7}{\item Die Kommunikation mit meinem \newline Paten/meiner Patin hat gut funktioniert.} \\
-	\itemsseven{v8}{\item Mein Pate/meine Patin konnte mich bei der Rollenfindung als Lehrkraft unterstützen.} \\
-	\itemsseven{v9}{\item Dank der Unterstützung meines \newline Paten/meiner Patin fühlte ich mich meiner Aufgabe besser gewachsen.} \\
-	\itemsseven{v10}{\item Insgesamt würde ich meinen Paten/meine Patin weiterempfehlen.}
+	\itemsseven{v1}{\item Ich konnte die erlernten Inhalte des KICK OFF anwenden.} \\
+	\itemsseven{v2}{\item Die Schulleitung war ausreichend über das Patensystem informiert.} \\
+	\itemsseven{v3}{\item Die Schulleitung hat sich Zeit für ein gemeinsames Gespräch mit mir und meinem Paten/meiner Patin genommen.} \\
+	\itemsseven{v4}{\item Die Ziele der Patenschaft und wie sie organisiert ist, wurden verständlich vermittelt.} \\
+	\itemsseven{v5}{\item Mir war bewusst, welche Rolle mein \newline Pate/meine Patin bei meinem Einstieg \newline hatte.} \\
+	\itemsseven{v6}{\item Es gab ausreichend Zeit, mich mit meinem Paten/meiner Patin auszutauschen.} \\
+	\itemsseven{v7}{\item Die Dauer der Patenschaft (8 Wochen) war angemessen.}
 
 \end{enumerate}\saveenum
 
 \vspace{-1cm}
+\tikzmark{b}
+
+\gestrichelt{14.15}{14.15}{a}{b} % manuell positionieren
+
+
+\begin{tabular}{p{1cm}p{1.5cm}l}
+
+  & Falls nein: &
+
+  \begin{questionmult}{v7_no}\scoring{v=-1}
+    \begin{choices}
+    	\correctchoice{länger}\scoring{b=1}
+    	\correctchoice{kürzer}\scoring{b=2}
+    \end{choices}
+  \end{questionmult}
+
+\end{tabular}
+
+
+\vspace{0.3cm}
+
+\tikzmark{a}
+
+\begin{enumerate}\resetenum
+
+	\itemsseven{v8}{\item Die Patenschaft wurde im richtigen Zeitfenster durchgeführt.}
+
+\end{enumerate}\saveenum
+
+\vspace{-1.2cm}
+\tikzmark{b}
+
+\gestrichelt{14.15}{14.15}{a}{b}
+
+\vspace{0.3cm}
+
+\begin{tabular}{p{1cm}p{1.5cm}l}
+
+  & Falls nein: &
+
+\begin{questionmult}{v8_no}\scoring{v=-1}
+	\begin{choices}
+		\correctchoice{besser früher}\scoring{b=1}
+		\correctchoice{besser später}\scoring{b=2}
+	\end{choices}
+\end{questionmult}
+
+\end{tabular}
+
+
+
+\vspace{0.4cm}
+
+\tikzmark{a}
+
+\begin{enumerate}\resetenum
+
+	\itemsseven{v9}{\item Insgesamt würde ich zukünftigen Quereinsteigern das Konzept der Patenschaft \newline weiterempfehlen.}
+
+\end{enumerate}
+
+\vspace{-1.2cm}
 \tikzmark{b}
 
 \gestrichelt{14.15}{14.15}{a}{b} % manuell positionieren
