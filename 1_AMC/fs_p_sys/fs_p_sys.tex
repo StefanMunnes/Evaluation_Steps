@@ -1,0 +1,181 @@
+
+% Präambel
+
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[german]{babel}
+
+\renewcommand*\rmdefault{lmss}
+\usepackage{setspace}
+
+\usepackage{color, colortbl}
+\definecolor{grau}{rgb}{.9,.9,.9}
+
+\usepackage{bbding}
+\usepackage{dingbat}
+
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{fp}
+\usepackage{textpos}
+\usepackage{dashrule}
+\usepackage{tikz}
+\usepackage{paralist}
+
+% Für Fragebogen
+%---------------------------------------------
+% Bienvenue Stylepaket
+\usepackage[box,lang=DE,noshuffle]{automultiplechoice}
+% LMES Stylepaket
+\usepackage{zusatz}
+
+%---------------------------------------------
+% AMC anpassen
+
+\AMCtext{message}{\footnotesize \color{gray} Bitte Kästchen eindeutig mit dunkler Farbe (kein Bleistift) ankreuzen. Zur Korrektur falsches Kästchen vollständig ausfüllen und gewolltes ankreuzen.}
+\AMCtext{draft}{}
+
+% Vertikaler Abstand zwischen den einzelnen Fragen
+\def\AMCbeginQuestion#1#2{\vspace{-0.4cm}}
+
+%Größe Antwortboxen
+%\AMCboxDimensions{size=1.7ex}
+
+\makeatletter
+\def\saveenum{\xdef\@savedenum{\the\c@enumi\relax}}
+\def\resetenum{\global\c@enumi\@savedenum}
+\makeatother
+
+
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\onecopy{1}{
+
+\vspace{-0.5cm}
+
+\includegraphics[width=0.25\textwidth]{../bbst_gs_deutsch/_pics/arrow} \hspace{4.8cm}
+\includegraphics[width=0.4\textwidth]{../bbst_gs_deutsch/_pics/beberlin}
+
+\vspace{.5cm}
+
+\begin{center}
+	\textbf{\huge \scshape Evaluation} \\ \vspace{0.3cm}
+	\textbf{\Large \scshape FIRST STEPS durch die Patin/ den Paten}
+\end{center}
+
+\vspace{1.5cm}
+
+
+\subsection*{Fragen zum Patensystem}
+
+\vspace{-1.3cm}
+
+\begin{tabular}{p{7cm} l p{1cm} r}
+	& Trifft voll und & & Trifft überhaupt \\
+	& ganz zu 				& & nicht zu
+\end{tabular}
+
+\vspace{-.1cm}
+
+\tikzmark{a}
+
+\headerseven{}{1}{2}{3}{4}{5}{6}{weiß nicht} \\
+
+\begin{enumerate}
+
+	\itemsseven{v1}{\item Die Inhalte der Grundlagen- und Vertiefungsveranstaltung (Tipps für Paten) \linebreak waren hilfreich und vorbereitend.} \\
+	\itemsseven{v2}{\item Die Schulleitung war ausreichend über das Patensystem informiert.} \\
+	\itemsseven{v3}{\item Die Schulleitung hat sich Zeit für ein gemeinsames Gespräch mit mir und der Quereinsteigerin/ dem Quereinsteiger genommen.} \\
+	\itemsseven{v4}{\item Die Ziele und die Organisation der Patenschaft wurden in der Informationsveranstaltung verständlich vermittelt.} \\
+	\itemsseven{v5}{\item Mir war bewusst, welche Rolle ich als \linebreak Patin/ Pate zu erfüllen habe.} \\
+	\itemsseven{v6}{\item Es gab ausreichend Zeit, mich mit meiner Quereinsteigerin/ meinem Quereinsteiger auszutauschen.} \\
+	\itemsseven{v7}{\item Die Dauer der Patenschaft (8 Wochen) war angemessen.}
+
+\end{enumerate}\saveenum
+
+\vspace{-1cm}
+\tikzmark{b}
+
+\gestrichelt{14.15}{14.15}{a}{b} % manuell positionieren
+
+
+\begin{tabular}{p{1cm}p{1.5cm}l}
+
+  & Falls nein: &
+
+  \begin{questionmult}{v7_no}\scoring{v=-1}
+    \begin{choices}
+    	\correctchoice{länger}\scoring{b=1}
+    	\correctchoice{kürzer}\scoring{b=2}
+    \end{choices}
+  \end{questionmult}
+
+\end{tabular}
+
+
+\vspace{0.3cm}
+
+\tikzmark{a}
+
+\begin{enumerate}\resetenum
+
+	\itemsseven{v8}{\item Die Patenschaft wurde im richtigen Zeitfenster durchgeführt.}
+
+\end{enumerate}\saveenum
+
+\vspace{-1.2cm}
+\tikzmark{b}
+
+\gestrichelt{14.15}{14.15}{a}{b}
+
+\vspace{0.3cm}
+
+\begin{tabular}{p{1cm}p{1.5cm}l}
+
+  & Falls nein: &
+
+\begin{questionmult}{v8_no}\scoring{v=-1}
+	\begin{choices}
+		\correctchoice{besser früher}\scoring{b=1}
+		\correctchoice{besser später}\scoring{b=2}
+	\end{choices}
+\end{questionmult}
+
+\end{tabular}
+
+
+
+\vspace{0.4cm}
+
+\tikzmark{a}
+
+\begin{enumerate}\resetenum
+
+	\itemsseven{v9}{\item Insgesamt würde ich das Konzept der \linebreak Patenschaft weiterempfehlen.}
+
+\end{enumerate}
+
+\vspace{-1.2cm}
+\tikzmark{b}
+
+\gestrichelt{14.15}{14.15}{a}{b} % manuell positionieren
+
+
+\pagebreak
+
+
+\subsection*{Haben Sie noch Anregungen, Ideen, Verbesserungsvorschläge, Wünsche?}
+
+\begin{tabular}{| p{14.5cm} |}
+  	\cline{1-1} \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \cline{1-1}
+\end{tabular}
+
+}
+
+\end{document}

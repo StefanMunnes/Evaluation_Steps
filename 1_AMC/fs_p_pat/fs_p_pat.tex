@@ -1,0 +1,122 @@
+
+% Präambel
+
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[german]{babel}
+
+\renewcommand*\rmdefault{lmss}
+\usepackage{setspace}
+
+\usepackage{color, colortbl}
+\definecolor{grau}{rgb}{.9,.9,.9}
+
+\usepackage{bbding}
+\usepackage{dingbat}
+
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{fp}
+\usepackage{textpos}
+\usepackage{dashrule}
+\usepackage{tikz}
+\usepackage{paralist}
+
+% Für Fragebogen
+%---------------------------------------------
+% Bienvenue Stylepaket
+\usepackage[box,lang=DE,noshuffle]{automultiplechoice}
+% LMES Stylepaket
+\usepackage{zusatz}
+
+%---------------------------------------------
+% AMC anpassen
+
+\AMCtext{message}{\footnotesize \color{gray} Bitte Kästchen eindeutig mit dunkler Farbe (kein Bleistift) ankreuzen. Zur Korrektur falsches Kästchen vollständig ausfüllen und gewolltes ankreuzen.}
+\AMCtext{draft}{}
+
+% Vertikaler Abstand zwischen den einzelnen Fragen
+\def\AMCbeginQuestion#1#2{\vspace{-0.4cm}}
+
+%Größe Antwortboxen
+%\AMCboxDimensions{size=1.7ex}
+
+\makeatletter
+\def\saveenum{\xdef\@savedenum{\the\c@enumi\relax}}
+\def\resetenum{\global\c@enumi\@savedenum}
+\makeatother
+
+
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\onecopy{0}{
+
+\vspace{-0.5cm}
+
+\includegraphics[width=0.25\textwidth]{../bbst_gs_deutsch/_pics/arrow} \hspace{4.8cm}
+\includegraphics[width=0.4\textwidth]{../bbst_gs_deutsch/_pics/beberlin}
+
+\vspace{.5cm}
+
+\begin{center}
+	\textbf{\huge \scshape Evaluation} \\ \vspace{0.3cm}
+	\textbf{\Large \scshape FIRST STEPS-Paten im QuerBer}
+\end{center}
+
+\vspace{1.5cm}
+
+
+\subsection*{Fragen zu meiner übernommenen \newline Patenschaft}
+
+\vspace{-1.3cm}
+
+\begin{tabular}{p{7cm} l p{1cm} r}
+	& Trifft voll und & & Trifft überhaupt \\
+	& ganz zu 				& & nicht zu
+\end{tabular}
+
+\vspace{-.1cm}
+
+\tikzmark{a}
+
+\headerseven{}{1}{2}{3}{4}{5}{6}{weiß nicht} \\
+
+\begin{enumerate}
+
+	\itemsseven{v1}{\item Ich war in der Lage, auf die Fragen und Wünsche meiner Quereinsteigerin/ meines Quereinsteigers zu eingehen.} \\
+	\itemsseven{v2}{\item Die Gespräche mit meiner Quereinsteigerin/ meinem Quereinsteiger fanden auf \linebreak Augenhöhe statt.} \\
+	\itemsseven{v3}{\item Die Gespräche mit meiner Quereinsteigerin/ meinem Quereinsteiger fanden in einer ruhigen und vertraulichen Atmosphäre statt.} \\
+	\itemsseven{v4}{\item Ich war in der Lage, ein hilfreiches und konstruktives Feedback zu geben.} \\
+	\itemsseven{v5}{\item Ich war in der Lage, meiner Quereinsteigerin/ meinem Quereinsteiger auf emotionaler Ebene weiterhelfen zu können.} \\
+	\itemsseven{v6}{\item Ich hatte NICHT das Bedürfnis, aktiv in den Unterricht eingreifen zu müssen.} \\
+	\itemsseven{v7}{\item Die Kommunikation mit meiner Quereinsteigerin/ meinem Quereinsteiger hat gut funktioniert.} \\
+	\itemsseven{v8}{\item Ich war in der Lage, meine Quereinsteigerin/ meinem Quereinsteiger bei der Rollenfindung als Lehrkraft zu unterstützen.} \\
+	\itemsseven{v9}{\item Insgesamt habe ich das Gefühl, dass meine Quereinsteigerin/ mein Quereinsteiger durch die Patenschaft besser in das Berufsfeld der Lehrkraft hineingewachsen ist.} \\
+	\itemsseven{v10}{\item Die Quereinsteigerin/ der Quereinsteiger war offen für meine Anregungen und \linebreak Vorschläge.}
+
+\end{enumerate}\saveenum
+
+\vspace{-1cm}
+\tikzmark{b}
+
+\gestrichelt{14.15}{14.15}{a}{b} % manuell positionieren
+
+
+\pagebreak
+
+
+\subsection*{Haben Sie noch Anregungen, Ideen, Verbesserungsvorschläge, Wünsche?}
+
+\begin{tabular}{| p{14.5cm} |}
+  	\cline{1-1} \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \cline{1-1}
+\end{tabular}
+
+}
+
+\end{document}
