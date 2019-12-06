@@ -46,37 +46,63 @@ partlab <- c("Zusammenfassende Einschätzung\nzur Veranstaltung", "Der Dozent/ d
 # Datensätze laden
 su_ids <- basename(list.dirs("3_Analyse/Scans/set_up", recursive = F))
 
-csvs <- str_replace(list.files("3_Analyse/Scans/set_up/",
+csvs_single <- str_replace(list.files("3_Analyse/Scans/set_up/",
                                pattern = "*.csv",
                                include.dirs = T,
                                recursive = T),
                     ".csv", "")
 
-pdfs <- str_replace(list.files("4_Ergebnisse/Grafiken/set_up/",
+pdfs_singles <- str_replace(list.files("4_Ergebnisse/Grafiken/set_up/",
                                pattern = "*.pdf",
                                include.dirs = T,
                                recursive = T),
                     ".pdf", "")
 
-to.use <- setdiff(csvs, pdfs)
-# to.use <- csvs  # wenn alle PDF-Berichte überschrieben werden sollen
+to.use_singles <- setdiff(csvs_single, pdfs_singles)
+to.use_singles <- csvs_single  # wenn alle PDF-Berichte überschrieben werden sollen
 
 
-raw <- sapply(to.use, function(x) read.csv2(paste0("3_Analyse/Scans/set_up/", x, ".csv"),
-                                            stringsAsFactor = T,
-                                            colClasses = "character"),
+# lade alle (noch unbearbeiteten) CSV-Dateien in eine Liste als data.frames
+data.raw <- sapply(to.use_singles, function(x) read.csv2(paste0("3_Analyse/Scans/set_up/", x, ".csv"),
+                                                    stringsAsFactor = T,
+                                                    colClasses = "character"),
               simplify = F,
               USE.NAMES = T)
 
-raw.2 <- lapply(raw, function(x) x %>%
+
+### Schleife für Gesamtberichte
+# wenn mehr als 1 Datei im SU_ID-Ordner liegt, erstelle einen Gesamtdatensatz
+su_ids_count = list()
+
+for (id in su_ids) {
+
+  id_csvs <- list.files(paste0("3_Analyse/Scans/set_up/", id),
+                        pattern = "*.csv",
+                        include.dirs = T,
+                        recursive = T)
+
+  su_ids_count[[id]] <- length(id_csvs)
+
+  if (length(id_csvs) > 1) {
+
+    id_all <- list(bind_rows(lapply(id_csvs,
+                                    function(csv)
+                                      read.csv2(paste0("3_Analyse/Scans/set_up/", id, "/", csv)))))
+    names(id_all) <- id
+
+    data.raw <- c(data.raw, id_all)
+  }
+}
+
+
+data.recoded <- lapply(data.raw, function(x) x %>%
+  mutate(Note = as.character(Note)) %>%
   filter(Note != "-1") %>%
   select(starts_with("TICKED.")) %>%
   rename_at(vars(starts_with("TICKED.")), funs(str_replace(., "TICKED.", ""))))
 
-names(raw.2) <- to.use
 
-
-final <- lapply(raw.2, function(x)
+data.final <- lapply(data.recoded, function(x)
   gather(x, frage, note) %>%
   transmute(frage = recode_factor(frage, !!!varlab, .ordered = T),
             note  = as.numeric(recode_factor(note, !!!notelab)),
@@ -87,26 +113,40 @@ final <- lapply(raw.2, function(x)
 
 # Bericht als PDF mit 2 Grafiken und Durchschnittsnote
 
-for (i in names(final)) {
+for (i in names(data.final)) {
 
-  file <- paste0("4_Ergebnisse/Grafiken/set_up/", i, ".pdf")
+  if (str_detect(names(data.final[i]), "/")) {
 
-  su_id <- unlist(strsplit(names(final[i]), "/"))[1]
-  datetime <- unlist(strsplit(names(final[i]), "/"))[2]
+    file <- paste0("4_Ergebnisse/Grafiken/set_up/", i, ".pdf")
 
-  date <- format.Date(as.Date(datetime, format = "%Y%m%d"), format = "%d.%m.%Y")
-  time <- sub("([[:digit:]]{2,2})$", ":\\1", str_sub(datetime, -4, -1))
+    su_id <- unlist(strsplit(names(data.final[i]), "/"))[1]
+    datetime <- unlist(strsplit(names(data.final[i]), "/"))[2]
 
-  teilnehmende <- nrow(final[[i]])/11
+    date <- format.Date(as.Date(datetime, format = "%Y%m%d"), format = "%d.%m.%Y")
+    time <- sub("([[:digit:]]{2,2})$", ":\\1", str_sub(datetime, -4, -1))
 
-  schnitt <- round(mean(final[[i]][["note"]], na.rm = T), digits = 1)
+    date_time <- paste0(date, "  -  ", time)
 
+    if (!dir.exists(paste0("4_Ergebnisse/Grafiken/set_up/", su_id))) {
+      dir.create(paste0("4_Ergebnisse/Grafiken/set_up/", su_id))
+    }
 
-  if (!dir.exists(paste0("4_Ergebnisse/Grafiken/set_up/", su_id))) {
-    dir.create(paste0("4_Ergebnisse/Grafiken/set_up/", su_id))
+  } else {
+
+    file <- paste0("4_Ergebnisse/Grafiken/set_up/", i, "/Gesamtbericht.pdf")
+
+    su_id <- i
+
+    date_time <- paste0("Gesamtbericht für ", su_ids_count[[i]], " Kurse")
+
   }
 
-  
+  teilnehmende <- nrow(data.final[[i]])/11
+
+  schnitt <- round(mean(data.final[[i]][["note"]], na.rm = T), digits = 1)
+
+
+
   par(oma = c(1, 1, 0, 1))
   par(mar = c(1, 1, 0, 1))
 
@@ -115,7 +155,7 @@ for (i in names(final)) {
   text(5.5, 7, "Feedback", cex = 2.2)
   text(5.5, 6, "zum SET UP", cex = 1.5)
   text(5.5, 5, su_id, cex = 1.2)
-  text(5.5, 3, paste0(date, "  -  ", time), cex = 1)
+  text(5.5, 3, date_time, cex = 1)
   text(5.5, 2, paste0("Teilnehmende: ", teilnehmende), cex = 1)
 
   text(5.5, 0, paste0("Durchschnittliche Bewertung: ", schnitt), cex = 1.2)
@@ -127,7 +167,7 @@ for (i in names(final)) {
 
   dev.off()
 
-  plot.1 <- final[[i]] %>% filter(grepl("(^(1. )|2|3|4|5|6|7|8)", frage), between(note, 1, 6)) %>%
+  plot.1 <- data.final[[i]] %>% filter(grepl("(^(1. )|2|3|4|5|6|7|8)", frage), between(note, 1, 6)) %>%
     ggplot(aes(y = note, x = reorder(frage, desc(frage)))) +
     coord_flip() +
     #geom_jitter(width = .15, height = 0.08, cex = 2, color = alpha("mediumpurple3", 0.4)) +
@@ -148,7 +188,7 @@ for (i in names(final)) {
           plot.title = element_text(face = "bold", size = 12, colour = "black"))
 
 
-  plot.2 <- final[[i]] %>% filter(grepl("(9|10|11)", frage), between(note, 1, 6)) %>%
+  plot.2 <- data.final[[i]] %>% filter(grepl("(9|10|11)", frage), between(note, 1, 6)) %>%
     ggplot(aes(y = note, x = reorder(frage, desc(frage)))) +
     coord_flip() +
     geom_count(color = alpha("mediumpurple3", 0.66), show.legend = F)  +
