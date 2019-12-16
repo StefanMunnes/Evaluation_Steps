@@ -22,7 +22,7 @@ if (is.na(v7_no) & is.na(v8_no)) {
 
 # Margins für Plots
 par(oma = c(1, 1, 0, 1))
-par(mar = c(1, 1, 0, 1))
+par(mar = c(1, 5, 0, 1))
 
 
 # Plot für Title für p_q_sys

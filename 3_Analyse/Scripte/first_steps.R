@@ -1,5 +1,5 @@
 ######################################################
-# Skript zur Auswertung der SET UP Evaluation
+# Skript zur Auswertung der FIRST STEPS Evaluation
 #
 # Stefan Munnes (munnes@wzb.eu)
 #

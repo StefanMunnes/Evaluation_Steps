@@ -8,7 +8,7 @@ note_p <- round(mean(data.final_pat[data.final_pat$part == "p" & !grepl("Nein", 
 
 # Ränder für Plots
 par(oma = c(1, 1, 0, 1))
-par(mar = c(1, 1, 0, 1))
+par(mar = c(1, 5, 0, 1))
 
 
 # Plot für Title für p_q_pat
