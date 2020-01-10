@@ -47,18 +47,18 @@ partlab <- c("Zusammenfassende Einschätzung\nzur Veranstaltung", "Der Dozent/ d
 su_ids <- basename(list.dirs("3_Analyse/Scans/set_up", recursive = F))
 
 csvs_single <- str_replace(list.files("3_Analyse/Scans/set_up/",
-                               pattern = "*.csv",
-                               include.dirs = T,
-                               recursive = T),
-                    ".csv", "")
+                                      pattern = "*.csv",
+                                      include.dirs = T,
+                                      recursive = T),
+                           ".csv", "")
 
-pdfs_singles <- str_replace(list.files("4_Ergebnisse/Grafiken/set_up/",
-                               pattern = "*.pdf",
-                               include.dirs = T,
-                               recursive = T),
-                    ".pdf", "")
+# pdfs_singles <- str_replace(list.files("4_Ergebnisse/Grafiken/set_up/",
+#                                pattern = "*.pdf",
+#                                include.dirs = T,
+#                                recursive = T),
+#                     ".pdf", "")
 
-to.use_singles <- setdiff(csvs_single, pdfs_singles)
+# to.use_singles <- setdiff(csvs_single, pdfs_singles)
 to.use_singles <- csvs_single  # wenn alle PDF-Berichte überschrieben werden sollen
 
 
@@ -70,7 +70,13 @@ data.raw <- sapply(to.use_singles, function(x) read.csv2(paste0("3_Analyse/Scans
               USE.NAMES = T)
 
 
-### Schleife für Gesamtberichte
+### Gesamtbericht für alle SetUp-Kurse erstellen
+data.raw <- c(list(bind_rows(data.raw)), data.raw)
+
+names(data.raw)[1] <- "Gesamtbericht"
+
+
+### Schleife für Setup-Gesamtberichte
 # wenn mehr als 1 Datei im SU_ID-Ordner liegt, erstelle einen Gesamtdatensatz
 su_ids_count = list()
 
@@ -131,6 +137,14 @@ for (i in names(data.final)) {
       dir.create(paste0("4_Ergebnisse/Grafiken/set_up/", su_id))
     }
 
+  } else if (names(data.final[i]) == "Gesamtbericht") {
+    
+    file <- paste0("4_Ergebnisse/Grafiken/set_up/", i, ".pdf")
+    
+    su_id <- i
+    
+    date_time <- paste0("Gesamtbericht für ", length(data.final) - 1, " Kurse")
+  
   } else {
 
     file <- paste0("4_Ergebnisse/Grafiken/set_up/", i, "/Gesamtbericht.pdf")
