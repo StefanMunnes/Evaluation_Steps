@@ -12,7 +12,7 @@ library(grid)
 library(gridExtra)
 library(jpeg)
 library(ggpubr)
-
+library(openxlsx)
 
 ### Arbeitsverzeichnis setzen
 setwd("/home/steps/Evalutation_Steps")
@@ -40,6 +40,11 @@ source("3_Analyse/Scripte/first_steps/fs_labels.R")
 notelab <- c("A" = 1, "B" = 2, "C" = 3, "D" = 4, "E" = 5, "F" = 6)
 
 
+# leere data.frames erstellen, damit kein Fehler falls noch keine Bögen da sind
+data_pat_p <- data.frame()
+data_pat_q <- data.frame()
+data_sys_p <- data.frame()
+data_sys_q <- data.frame()
 
 # Daten laden und aufbereiten für Paten/-schaft
 csvs_pat_p <- list.files(paste0("3_Analyse/Scans/first_steps/", fs_jahr, "/pat_p"),
@@ -79,7 +84,7 @@ data_pat_q <- bind_rows(lapply(csvs_pat_q, function(csv)
                    note  = as.numeric(recode_factor(note, !!!notelab)),
                    part  = "q")
 
-data.final_pat <- rbind(data_pat_p, data_pat_q)
+data.final_pat <- bind_rows(data_pat_p, data_pat_q)
 data.final_pat[grepl("v0", data.final_pat$frage) & data.final_pat$note == 2 & !is.na(data.final_pat$note), "note"] <- 0 # Dummy Codierung
 
 
@@ -121,10 +126,11 @@ data_sys_q <- bind_rows(lapply(csvs_sys_q, function(csv)
                    note  = as.numeric(recode_factor(note, !!!notelab)),
                    part  = "q")
 
-data.final_sys <- rbind(data_sys_p, data_sys_q)
+data.final_sys <- bind_rows(data_sys_p, data_sys_q)
 data.final_sys[grepl("v0", data.final_sys$frage) & data.final_sys$note == 2 & !is.na(data.final_sys$note), "note"] <- 0 # Dummy Codierung
 data.final_sys[grepl("v7", data.final_sys$frage) & data.final_sys$note == 2 & !is.na(data.final_sys$note), "note"] <- 0 # Dummy Codierung
 data.final_sys[grepl("v8", data.final_sys$frage) & data.final_sys$note == 2 & !is.na(data.final_sys$note), "note"] <- 0 # Dummy Codierung
+
 
 
 ###############################################################################
@@ -153,5 +159,10 @@ source("3_Analyse/Scripte/first_steps/fs_sys_p.R")
 
 ### sys_q ###
 source("3_Analyse/Scripte/first_steps/fs_sys_q.R")
+
+
+### Einzelberichte + Tabelle für jeden Paten/jede Patin ####
+source("3_Analyse/Scripte/first_steps/fs_paten.R")
+
 
 # exit
