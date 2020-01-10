@@ -14,8 +14,8 @@ par(mar = c(1, 5, 0, 1))
 plot(0:10, asp = 0.6, type = "n", xaxt = "n", yaxt = "n", bty = "n", xlab = "", ylab = "")
 
 text(5.5, 7, "Evaluation", cex = 2.2)
-text(5.5, 6, "FIRST STEPS - Paten im QuerBer", cex = 1.5)
-text(5.5, 4, "Fragen zur Patenschaft", cex = 1.3)
+text(5.5, 6, "FIRST STEPS", cex = 1.5)
+text(5.5, 4, "Fragen zur Patenschaft an die Patin/den Paten", cex = 1.3)
 
 text(5.5, 2, paste0("Teilnehmende: ", n_p), cex = 1)
 

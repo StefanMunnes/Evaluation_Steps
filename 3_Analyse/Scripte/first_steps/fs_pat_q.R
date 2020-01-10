@@ -14,13 +14,13 @@ par(mar = c(1, 5, 0, 1))
 plot(0:10, asp = 0.6, type = "n", xaxt = "n", yaxt = "n", bty = "n", xlab = "", ylab = "")
 
 text(5.5, 7, "Evaluation", cex = 2.2)
-text(5.5, 6, "FIRST STEPS - Paten im QuerBer", cex = 1.5)
-text(5.5, 4, "Fragen zum Paten/zur Patin", cex = 1.3)
+text(5.5, 6, "FIRST STEPS", cex = 1.5)
+text(5.5, 4, "Fragen zur Patenschaft an die Quereinsteigenden", cex = 1.3)
 
-text(5.5, 2, paste0("Teilnehmende: ", n_p, "*"), cex = 1)
+text(5.5, 2, paste0("Teilnehmende: ", n_q, "*"), cex = 1)
 text(5.5, 1, paste0("* ", kick_off, "% haben bereits vor dem KICK OFF an einer Schule gearbeitet."), cex = 0.8)
 
-text(5.5, 0, paste0("Durchschnittliche Bewertung: ", note_p), cex = 1)
+text(5.5, 0, paste0("Durchschnittliche Bewertung: ", note_q), cex = 1)
 
 rasterImage(beberlin, 1, 9, 4.5, 10)
 rasterImage(arrow, 7.5, 9 , 10, 10)
@@ -31,9 +31,9 @@ dev.off()
 
 
 # Plot für q_pat
-plot <- data.final_pat %>% filter(part == "p", !grepl("^Nein|v0", frage_p), between(note, 1, 6)) %>%
+plot <- data.final_pat %>% filter(part == "q", !grepl("^Nein|v0", frage_q), between(note, 1, 6)) %>%
   ggplot(aes(y = note,
-             x = reorder(frage_p, desc(frage_p)))) +
+             x = reorder(frage_p, desc(frage_q)))) +
     geom_count(color = "mediumpurple3",
                alpha = 0.6,
                show.legend = F) +

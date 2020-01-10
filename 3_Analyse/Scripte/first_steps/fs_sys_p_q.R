@@ -15,7 +15,7 @@ par(mar = c(1, 5, 0, 1))
 plot(0:10, asp = 0.6, type = "n", xaxt = "n", yaxt = "n", bty = "n", xlab = "", ylab = "")
 
 text(5.5, 7, "Evaluation", cex = 2.2)
-text(5.5, 6, "FIRST STEPS - Patensystem", cex = 1.5)
+text(5.5, 6, "Gegenüberstellung der Evaluation zum Patensystem", cex = 1.5)
 
 text(5.5, 4, "Teilnehmende:", cex = 1.2)
 text(5.5, 3, paste0("Quereinsteiger/innen: ", n_q,

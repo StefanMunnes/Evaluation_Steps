@@ -26,15 +26,15 @@ varlab_sys_q <- c(
 
 
 varlab_sys <- c(
-  "v1" = "1. Die Inhalte der Grundlagen- und Vertiefungsveranstaltung waren hilfreich und vorbereitend.",
+  "v1" = "1. Die Inhalte der Grundlagen- und Vertiefungsveranstaltung bzw. KICK OFF waren hilfreich und vorbereitend.",
 	"v2" = "2. Die Schulleitung war ausreichend über das Patensystem informiert.",
 	"v3" = "3. Die Schulleitung hat sich Zeit für ein gemeinsames Gespräch genommen.",
 	"v4" = "4. Die Ziele der Patenschaft und wie sie organisiert ist, wurden verständlich vermittelt.",
 	"v5" = "5. Mir war bewusst, welche Rolle Patinnen/Paten zu erfüllen habe.",
 	"v6" = "6. Es gab ausreichend Zeit, sich auszutauschen.",
-	"v7" = "7. Die Dauer der Patenschaft (8 Wochen) war angemessen.¹",
+	"v7" = "7. Die Dauer der Patenschaft (8 Wochen) war angemessen.",
   "v7_no" = "Nein: v7",
-  "v8" = "8. Die Patenschaft wurde im richtigen Zeitfenster durchgeführt.²",
+  "v8" = "8. Die Patenschaft wurde im richtigen Zeitfenster durchgeführt.",
   "v8_no" = "Nein: v8",
   "v9" = "9. Insgesamt würde ich das Konzept der Patenschaft weiterempfehlen.")
 
@@ -67,11 +67,11 @@ varlab_pat_q <- c(
   varlab_pat <- c(
     "v1"  = "1. Auf Fragen und Wünsche wurde eingegangen.",
     "v2"  = "2. Die Gespräche fanden auf Augenhöhe statt.",
-    "v3"  = "3. Die Gespräche fanden in einer ruhigen und vertraulichen Atmosphäre statt.",
+    "v3"  = "3. Die Gespräche fanden in einer ruhigen und vertraulichen\nAtmosphäre statt.",
     "v4"  = "4. Das Feedback war hilfreich und konstruktiv.",
     "v5"  = "5. Die Gespräche konnten emotional stärken.",
     "v6"  = "6. In den Unterricht wurde NICHT aktiv eingegriffen.",
     "v7"  = "7. Die Kommunikation hat gut funktioniert.",
     "v8"  = "8. Die Rollenfindung zur Lehrkraft wurde gut unterstützt.",
-    "v9"  = "9. Die Unterstützung durch die Patenschaft bereitet gut auf das Berufsfeld der Lehrkraft vor.",
-    "v10" = "10. Die Quereinsteigerin/ der Quereinsteiger war offen für meine Anregungen und Vorschläge. \n10. Insgesamt würde ich meinen Paten/meine Patin weiterempfehlen.")
+    "v9"  = "9. Die Unterstützung durch die Patenschaft bereitet gut auf\ndas Berufsfeld der Lehrkraft vor.",
+    "v10" = "10. Insgesamt würde ich meinen Paten/meine Patin weiterempfehlen.\10. Die Quereinsteigerin/ der Quereinsteiger war offen\nfür meine Anregungen und Vorschläge.")

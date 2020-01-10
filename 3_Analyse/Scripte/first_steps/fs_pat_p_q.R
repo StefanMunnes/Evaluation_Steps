@@ -15,7 +15,7 @@ par(mar = c(1, 5, 0, 1))
 plot(0:10, asp = 0.6, type = "n", xaxt = "n", yaxt = "n", bty = "n", xlab = "", ylab = "")
 
 text(5.5, 7, "Evaluation", cex = 2.2)
-text(5.5, 6, "FIRST STEPS - Paten/-schaft", cex = 1.5)
+text(5.5, 6, "Gegenüberstellung der Evaluation zur Patenschaft", cex = 1.5)
 
 text(5.5, 4, "Teilnehmende:", cex = 1.2)
 text(5.5, 3, paste0("Quereinsteiger/innen: ", n_q,
@@ -52,7 +52,7 @@ plot <- data.final_pat %>% filter(!grepl("^Nein|v0", frage), between(note, 1, 6)
   coord_flip() +
   scale_color_manual(values = c("#8968CD", "#ABCD68")) +
   scale_size_area(max_size = 5) +
-  scale_x_discrete(labels = function(x) str_wrap(x, width = 60)) +
+  #scale_x_discrete(labels = function(x) str_wrap(x, width = 60)) +
   scale_y_continuous(name = "",
                      limits = c(1, 6),
                      breaks = c(1, 2, 3, 4, 5, 6),
