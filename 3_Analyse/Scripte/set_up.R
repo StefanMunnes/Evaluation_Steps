@@ -12,6 +12,7 @@ library(grid)
 library(gridExtra)
 library(jpeg)
 library(ggpubr)
+library(openxlsx)
 
 ### Arbeitsverzeichnis setzen
 setwd("/home/steps/Evalutation_Steps")
@@ -116,8 +117,13 @@ data.final <- lapply(data.recoded, function(x)
             part  = recode_factor(part, !!!partlab, .ordered = T)))
 
 
+# Initiiere data.frame für Exceltabelle
+data.excel <- data.frame(matrix(vector(), 0, 5,
+                         dimnames = list(c(), c("SU_ID", "Datum", "Uhrzeit", "Teilnehmende", "Note"))),
+                         stringsAsFactors = F)
 
-# Bericht als PDF mit 2 Grafiken und Durchschnittsnote
+
+### Bericht als PDF mit 2 Grafiken und Durchschnittsnote
 
 for (i in names(data.final)) {
 
@@ -137,6 +143,19 @@ for (i in names(data.final)) {
       dir.create(paste0("4_Ergebnisse/Grafiken/set_up/", su_id))
     }
 
+    teilnehmende <- nrow(data.final[[i]])/11
+    
+    schnitt <- round(mean(data.final[[i]][["note"]], na.rm = T), digits = 1)
+    
+    ### Erstelle data.frame für Excel-Datei
+    data.excel <- bind_rows(data.excel, 
+                            data.frame("SU_ID" = su_id,
+                                       "Datum" = date,
+                                       "Uhrzeit" = time,
+                                       "Teilnehmende" = teilnehmende,
+                                       "Note" = schnitt))
+    
+    
   } else if (names(data.final[i]) == "Gesamtbericht") {
     
     file <- paste0("4_Ergebnisse/Grafiken/set_up/", i, ".pdf")
@@ -144,6 +163,10 @@ for (i in names(data.final)) {
     su_id <- i
     
     date_time <- paste0("Gesamtbericht für ", length(data.final) - 1, " Kurse")
+    
+    teilnehmende <- nrow(data.final[[i]])/11
+    
+    schnitt <- round(mean(data.final[[i]][["note"]], na.rm = T), digits = 1)
   
   } else {
 
@@ -153,12 +176,17 @@ for (i in names(data.final)) {
 
     date_time <- paste0("Gesamtbericht für ", su_ids_count[[i]], " Kurse")
 
+    teilnehmende <- nrow(data.final[[i]])/11
+    
+    schnitt <- round(mean(data.final[[i]][["note"]], na.rm = T), digits = 1)
+    
+    ### Erstelle data.frame für Excel-Datei
+    data.excel <- bind_rows(data.excel, 
+                            data.frame("SU_ID" = su_id,
+                                       "Teilnehmende" = teilnehmende,
+                                       "Note" = schnitt))
+    
   }
-
-  teilnehmende <- nrow(data.final[[i]])/11
-
-  schnitt <- round(mean(data.final[[i]][["note"]], na.rm = T), digits = 1)
-
 
 
   par(oma = c(1, 1, 0, 1))
@@ -229,6 +257,12 @@ for (i in names(data.final)) {
   print(ggarrange(plot.title, plot.graph, ncol = 1,  heights = c(1.6, 2), widths = c(2, 1.6)))
 
   dev.off()
+  
 }
+
+
+### Excel-Tabelle erstellen
+
+write.xlsx(data.excel, "4_Ergebnisse/Tabellen/set_up/Gesamtbericht.xlsx")
 
 # exit
