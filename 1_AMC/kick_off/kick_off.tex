@@ -1,0 +1,162 @@
+%---------------------------------------------
+% Präambel
+
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[german]{babel}
+
+\renewcommand*\rmdefault{lmss}
+\usepackage{setspace}
+
+\usepackage{color, colortbl}
+\definecolor{grau}{rgb}{.9,.9,.9}
+
+\usepackage{bbding}
+\usepackage{dingbat}
+
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{fp}
+\usepackage{textpos}
+\usepackage{dashrule}
+\usepackage{tikz}
+\usepackage{paralist}
+
+% Für Fragebogen
+%---------------------------------------------
+% Bienvenue Stylepaket
+\usepackage[box,lang=DE,noshuffle]{automultiplechoice}
+% LMES Stylepaket
+\usepackage{zusatz}
+
+%---------------------------------------------
+% AMC anpassen
+
+\AMCtext{message}{\footnotesize \color{gray} Bitte Kästchen eindeutig mit dunkler Farbe (kein Bleistift) ankreuzen. Zur Korrektur falsches Kästchen vollständig ausfüllen und gewolltes ankreuzen.}
+\AMCtext{draft}{}
+
+% Vertikaler Abstand zwischen den einzelnen Fragen
+\def\AMCbeginQuestion#1#2{\vspace{-0.4cm}}
+
+%Größe Antwortboxen
+%\AMCboxDimensions{size=1.7ex}
+
+\makeatletter
+\def\saveenum{\xdef\@savedenum{\the\c@enumi\relax}}
+\def\resetenum{\global\c@enumi\@savedenum}
+\makeatother
+
+
+\setlength\parindent{0pt}
+
+\onecopy{1}{
+
+
+\begin{document}
+
+\vspace{-0.5cm}
+
+\includegraphics[width=0.25\textwidth]{../bbst_gs_deutsch/_pics/steps} \hspace{4.9cm}
+\includegraphics[width=0.4\textwidth]{../bbst_gs_deutsch/_pics/beberlin}
+
+\vspace{.5cm}
+
+\begin{center}
+	\textbf{\Huge \scshape Feedback} \\ \vspace{0.3cm}
+	\textbf{\huge \scshape zum KICK OFF}
+\end{center}
+
+\vspace{.5cm}
+
+\begin{tabular}{rlrl}
+& & Veranstaltungs- & \\
+Seminar (Thema): & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ & 
+kennung: & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\ 
+& \\
+Veranstaltungs- & & & \\
+zeit/-datum: & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ &
+Name DozentIn: & \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+\end{tabular}
+
+\vspace{.5cm}
+
+\subsection*{Zusammenfassende Einschätzung \\ zur Veranstaltung}
+
+\vspace{-1.3cm}
+
+\begin{tabular}{p{7cm} l p{1cm} r}
+	& Trifft voll und & & Trifft überhaupt \\
+	& ganz zu 				& & nicht zu
+\end{tabular}
+
+\vspace{-.1cm}
+
+\tikzmark{a}
+
+\headerseven{}{1}{2}{3}{4}{5}{6}{weiß nicht} \\
+
+\begin{enumerate}
+
+	\itemsseven{v1}{\item Die Veranstaltung war klar und übersichtlich strukturiert.} \\
+	\itemsseven{v2}{\item Die Veranstaltung versetzt mich in die\linebreak Lage, die Inhalte selbständig zu vertiefen.} \\
+	\itemsseven{v3}{\item Das fachliche Niveau der Veranstaltung empfand ich als angemessen.} \\
+	\itemsseven{v4}{\item Das Erlernte und Erfahrene sind für mich beruflich von Nutzen.} \\
+	\itemsseven{v5}{\item Es gab genügend Zeit für den allgemeinen bzw. fachlichen Austausch.} \\
+	\itemsseven{v6}{\item Die Lehrveranstaltung begann und endete pünktlich.} \\
+	\itemsseven{v7}{\item Die Organisation des Programms QuerBer wurde in der Begrüßungsveranstaltung verständlich dargestellt.} \\
+	\itemsseven{v8}{\item Die Informationen waren über den\linebreak Bildungsserver problemlos abrufbar.}
+
+\end{enumerate}\saveenum
+
+\vspace{-1cm}
+\tikzmark{b}
+
+\gestrichelt{14.15}{14.15}{a}{b} % manuell positionieren
+
+\vspace{-.3cm}
+
+\subsection*{Der Dozent/ die Dozentin\dots}
+
+\vspace{-1cm}
+
+\tikzmark{a}
+
+\headerseven{}{1}{2}{3}{4}{5}{6}{weiß nicht} \\
+
+\begin{enumerate}\resetenum
+
+	\itemsseven{v9}{\item \dots hat Ziele und Struktur der Veranstaltung nachvollziehbar dargestellt.} \\
+	\itemsseven{v10}{\item \dots ging, soweit wie möglich, auf Wünsche und Fragen der Teilnehmenden ein und hat Anregungen aufgegriffen.} \\
+	\itemsseven{v11}{\item \dots gestaltete die Lehrveranstaltung \linebreak interessant und abwechslungsreich.}
+
+\end{enumerate}\saveenum
+
+\vspace{-1cm}
+\tikzmark{b}
+
+\gestrichelt{14.15}{14.15}{a}{b} % manuell positionieren
+
+
+\vspace{-1cm}
+
+\pagebreak
+
+\subsection*{Anmerkungen}
+
+\begin{enumerate}\resetenum
+
+\item Weitere Hinweise, Wünsche und Anregungen:	 \\
+
+\begin{tabular}{| p{13cm} |}
+  	\cline{1-1} \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \cline{1-1}
+\end{tabular}
+
+\end{enumerate}\saveenum
+
+\end{document}
+
+}
