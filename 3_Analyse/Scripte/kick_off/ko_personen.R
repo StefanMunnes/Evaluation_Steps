@@ -1,7 +1,7 @@
 
-for (x in unique(data.final$name)) {
+for (x in unique(data$name)) {
 
-  data.temp <- data.final[data.final$name == x,]
+  data.temp <- data[data$name == x,]
 
   file <- paste0("4_Ergebnisse/Grafiken/kick_off/Personen/", x, ".pdf")
 

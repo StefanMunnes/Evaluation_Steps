@@ -1,7 +1,7 @@
 
-for (x in unique(data.final$group)) {
+for (x in unique(data$group)) {
 
-  data.temp <- data.final[data.final$group == x,]
+  data.temp <- data[data$group == x,]
 
   kurs <- unlist(strsplit(x, "/"))[1]
   name <- unlist(strsplit(x, "/"))[2]

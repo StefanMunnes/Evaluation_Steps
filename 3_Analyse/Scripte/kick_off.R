@@ -59,9 +59,7 @@ data.list <- sapply(csvs, function(x)
                    simplify = F,
                    USE.NAMES = T)
 
-data.raw <- bind_rows(data.list, .id = "id")
-
-data.final <- data.raw %>%
+data <- bind_rows(data.list, .id = "id") %>%
   mutate(Note = as.character(Note),
          group = id) %>%
   filter(Note != "-1") %>%
@@ -82,7 +80,7 @@ source("3_Analyse/Scripte/kick_off/ko_kurse.R")
 
 
 ### Excel-Tabellen
-tbl.alle <- data.final %>%
+tbl.alle <- data %>%
   group_by(group) %>%
   summarise(Kurs = first(kurs),
             Lehrperson = first(name),
@@ -90,14 +88,14 @@ tbl.alle <- data.final %>%
             Note = round(mean(note, na.rm = 1), 1)) %>%
   select(-group)
 
-tbl.kurse <- data.final %>%
+tbl.kurse <- data %>%
   group_by(kurs) %>%
   summarise(Kurskennung = first(kurs),
             Teilnehmende = n()/11,
             Note = round(mean(note, na.rm = 1), 1)) %>%
   select(-kurs)
 
-tbl.personen <- data.final %>%
+tbl.personen <- data %>%
   group_by(name) %>%
   summarise(Lehrperson = first(name),
             Teilnehmende = n()/11,
